@@ -1,0 +1,16 @@
+this is sample file.
+
+spark code>>>>>>
+
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+
+spark=SparkSession.builder.appName("producttable").master("local").getOrCreate()
+
+
+df=spark.read.format("CSV").option("header","true").option("inferschema","true").load("file:///R:/pyspark/product.txt")
+
+df1=df.select("pid","pname","amt")
+
+df1.show()
